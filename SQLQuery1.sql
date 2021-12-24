@@ -1,0 +1,31 @@
+DROP TABLE IF EXISTS Users
+DROP TABLE IF EXISTS Product
+DROP TABLE IF EXISTS Cheque
+CREATE DATABASE [GameStore] 
+GO 
+USE[GameStore] 
+GO 
+CREATE TABLE [Users] 
+( 
+[IDUsers] INT PRIMARY KEY IDENTITY, 
+[Email] NVARCHAR (320) NOT NULL, 
+[Password] NVARCHAR (32) NOT NULL, 
+[Login] NVARCHAR (50) NOT NULL, 
+); 
+
+CREATE TABLE [Product] 
+( 
+[IDProduct] INT PRIMARY KEY IDENTITY, 
+[IDUsers] INT FOREIGN KEY REFERENCES [Users](IDUsers),
+[NameProduct] NVARCHAR (320) NOT NULL, 
+[Description] NVARCHAR (500) NOT NULL, 
+[PriceProduct] INT NOT NULL, 
+); 
+CREATE TABLE [Cheque] 
+( 
+[IDCheque] INT PRIMARY KEY IDENTITY, 
+[IDUser] INT FOREIGN KEY REFERENCES [Users](IDUsers),
+[IDProduct] INT FOREIGN KEY REFERENCES [Product](IDProduct),
+[Date] INT NOT NULL, 
+[PriceCheque] INT NOT NULL, 
+);
